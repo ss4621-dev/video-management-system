@@ -1,0 +1,93 @@
+System Requirements
+Ensure the computer has:
+
+Python 3.11 (Download)
+
+Node.js 18.x (Download)
+
+Git (Download)
+
+⚠️ Important: Install Python and Node.js before proceeding
+
+Set Up Project
+
+Extract the Project
+# Windows: Right-click → Extract All
+# Linux/macOS: unzip vms-project.zip
+cd vms
+
+Install System Dependencies
+# Windows
+pip install wheel
+pip install opencv-python-headless
+
+# Linux (Ubuntu/Debian)
+sudo apt update
+sudo apt install -y libgl1-mesa-glx libglib2.0-0 ffmpeg python3-opencv
+
+# macOS (Homebrew required)
+brew install ffmpeg OpenCV
+
+Backend Setup
+Create Virtual Environment
+
+# Windows
+python -m venv backend/venv
+backend\venv\Scripts\activate
+
+# Linux/macOS
+python3.11 -m venv backend/venv
+source backend/venv/bin/activate
+
+Install Python Dependencies
+
+cd backend
+pip install -r requirements.txt
+
+Verify Dependencies
+pip list
+# Should show FastAPI, uvicorn, opencv-python, etc.
+
+Frontend Setup
+
+cd ../frontend
+npm install
+
+Run the System
+
+Start Backend (Terminal 1)
+
+cd backend
+uvicorn main:app --reload --port 8000
+
+Start Frontend (Terminal 2)
+
+cd frontend
+npm run dev
+
+Access the Dashboard
+Open a web browser and visit:
+http://localhost:3000
+
+Test with Sample Streams
+
+Public RTSP Stream:
+rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mp4
+
+Local Webcam (if available):
+0  # For default camera
+
+Sample File (if you transferred sample videos):
+file:///path/to/vms-project/backend/sample_videos/sample.mp4
+
+Configuration Tips
+Change Ports (if 8000/3000 are busy):
+
+Backend: uvicorn main:app --reload --port 8001
+
+Frontend: Create .env file with PORT=3001
+
+Update API Base URL in frontend/src/services/api.js:
+
+javascript
+baseURL: 'http://localhost:8000'  // Match backend port
